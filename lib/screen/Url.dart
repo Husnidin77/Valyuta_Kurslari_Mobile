@@ -1,0 +1,1 @@
+const String urlAll = "https://cbu.uz/oz/arkhiv-kursov-valyut/json/";
