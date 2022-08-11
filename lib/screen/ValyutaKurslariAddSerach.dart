@@ -90,13 +90,23 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
             padding: const EdgeInsets.all(5.0),
             color: Colors.white,
             child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              color: Colors.blue.shade200,
               child: ListTile(
                 leading: const Icon(Icons.search),
                 title: TextField(
                   controller: controller,
                   onChanged: onSearch,
+                  // decoration: BoxDecoration(
+                  //   color: Colors.white,
+                  //   borderRadius: const BorderRadius.all(
+                  //       Radius.circular(20)),
                   decoration: const InputDecoration(
-                      hintText: "Qidiruv", border: InputBorder()),
+                      hintText: "Qidiruv", border: InputBorder.none
+
+                  ),
                 ),
                 trailing: IconButton(
                   onPressed: () {
@@ -131,8 +141,8 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                 );
                               },
                               child: Container(
-                                padding: const EdgeInsets.all(10),
-                                color: Colors.black12,
+                                  padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
+                                color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -280,13 +290,13 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                 );
                               },
                               child: Container(
-                                padding: const EdgeInsets.all(10),
-                                color: Colors.black12,
+                                padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
+                                color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(bottom: _w/60),
+                                      margin: EdgeInsets.only(bottom: _w/80),
                                       height: 75,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
