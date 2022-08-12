@@ -8,8 +8,8 @@ void main() async{
   var listener = InternetConnectionChecker().onStatusChange.listen((status) {
     switch (status) {
       case InternetConnectionStatus.connected:
-        // runApp(const MyApp());
-        runApp(const DiscannectScreen());
+        runApp(const MyApp());
+        // runApp(const DiscannectScreen());
         print('Internet connection.');
         break;
       case InternetConnectionStatus.disconnected:
