@@ -29,6 +29,7 @@ environment:
 dependencies:
   http:
   intl: ^0.17.0
+  internet_connection_checker: ^0.0.1+4
   flutter:
     sdk: flutter
 
@@ -63,6 +64,7 @@ flutter:
   assets:
      - assets/img/
      - assets/png/
+     - assets/gif/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
