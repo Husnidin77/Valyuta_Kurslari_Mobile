@@ -3,6 +3,8 @@ import 'dart:io' show Platform, exit;
 
 import 'package:flutter/services.dart';
 
+import '../main.dart';
+
 class DiscannectScreen extends StatefulWidget {
   const DiscannectScreen({Key? key}) : super(key: key);
 
@@ -34,21 +36,30 @@ class _DiscannectScreenState extends State<DiscannectScreen> {
                 ),
                 const Text(
                   "Iltimos internet borligiga ishonch hosil qiling",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 25,
                 ),
-                RaisedButton(
-                    onPressed: () {
-                      if (Platform.isAndroid) {
-                        SystemNavigator.pop();
-                      } else if (Platform.isIOS) {
-                        exit(0);
-                      }
-                    },
-                    child: const Text("Ilovadan chiqish", style: TextStyle(fontSize: 16),)
-                )
+                Container(
+                  child: IconButton(
+                      icon: Icon(Icons.refresh),
+                      onPressed: () {
+                        // if (Platform.isAndroid) {
+                        //   SystemNavigator.pop();
+                        // } else if (Platform.isIOS) {
+                        //   exit(0);
+                        // }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyApp(),
+                          ),
+                        );
+                      },
+                  ),
+                ),
               ],
             ),
           ),
