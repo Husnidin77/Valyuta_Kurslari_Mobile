@@ -51,12 +51,7 @@ class _DiscannectScreenState extends State<DiscannectScreen> {
                         // } else if (Platform.isIOS) {
                         //   exit(0);
                         // }
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyApp(),
-                          ),
-                        );
+                        Navigator.pop(context, true);
                       },
                   ),
                 ),

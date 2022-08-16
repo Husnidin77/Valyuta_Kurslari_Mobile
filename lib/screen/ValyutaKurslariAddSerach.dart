@@ -427,7 +427,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){},
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.info),
       ),
     );
   }
