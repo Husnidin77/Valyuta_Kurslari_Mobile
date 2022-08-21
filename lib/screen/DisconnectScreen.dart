@@ -43,17 +43,34 @@ class _DiscannectScreenState extends State<DiscannectScreen> {
                   height: 25,
                 ),
                 Container(
-                  child: IconButton(
-                      icon: Icon(Icons.refresh),
-                      onPressed: () {
-                        // if (Platform.isAndroid) {
-                        //   SystemNavigator.pop();
-                        // } else if (Platform.isIOS) {
-                        //   exit(0);
-                        // }
-                        Navigator.pop(context, true);
-                      },
+                  color: Colors.green,
+                  width: 50,
+                  child: Center(
+                    child: Ink(
+                      decoration: const ShapeDecoration(
+                        color: Colors.lightBlue,
+                        shape: CircleBorder(),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.refresh),
+                        color: Colors.black,
+                        onPressed: () {
+                          main();
+                        },
+                      ),
+                    ),
                   ),
+                  // child: IconButton(
+                  //     icon: Icon(Icons.refresh),
+                  //     onPressed: () {
+                  //       // if (Platform.isAndroid) {
+                  //       //   SystemNavigator.pop();
+                  //       // } else if (Platform.isIOS) {
+                  //       //   exit(0);
+                  //       // }
+                  //
+                  //     },
+                  // ),
                 ),
               ],
             ),

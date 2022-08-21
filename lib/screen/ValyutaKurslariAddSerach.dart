@@ -104,9 +104,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                   //   borderRadius: const BorderRadius.all(
                   //       Radius.circular(20)),
                   decoration: const InputDecoration(
-                      hintText: "Qidiruv", border: InputBorder.none
-
-                  ),
+                      hintText: "Qidiruv", border: InputBorder.none),
                 ),
                 trailing: IconButton(
                   onPressed: () {
@@ -136,18 +134,20 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Conversiya(b.code, b.rate, b.ccy, b.ccyNmUz),
+                                    builder: (context) => Conversiya(
+                                        b.code, b.rate, b.ccy, b.ccyNmUz),
                                   ),
                                 );
                               },
                               child: Container(
-                                  padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
+                                padding: const EdgeInsets.only(
+                                    top: 3, bottom: 3, left: 10, right: 10),
                                 color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(bottom: _w/60),
+                                      margin: EdgeInsets.only(bottom: _w / 60),
                                       height: 75,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
@@ -155,7 +155,8 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                             Radius.circular(20)),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.black.withOpacity(0.3),
+                                            color:
+                                                Colors.black.withOpacity(0.3),
                                             blurRadius: 40,
                                             spreadRadius: 10,
                                           ),
@@ -163,20 +164,23 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Wrap(
                                             children: [
                                               Container(
-                                                  padding: const EdgeInsets.all(10),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
                                                   child: CircleAvatar(
-                                                    backgroundImage: ExactAssetImage(
-                                                        'assets/png/${flags}.png'),
+                                                    backgroundImage:
+                                                        ExactAssetImage(
+                                                            'assets/png/${flags}.png'),
                                                   )
-                                                // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
-                                              ),
+                                                  // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
+                                                  ),
                                               Container(
-                                                padding: EdgeInsets.only(top: 14),
+                                                padding:
+                                                    EdgeInsets.only(top: 14),
                                                 child: Text(
                                                   b.ccyNmUz,
                                                   style: const TextStyle(
@@ -188,13 +192,13 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                           ),
                                           Column(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                                CrossAxisAlignment.end,
                                             children: [
                                               Container(
                                                 padding:
-                                                EdgeInsets.only(right: 15),
+                                                    EdgeInsets.only(right: 15),
                                                 child: Text(
                                                   b.date,
                                                   style: const TextStyle(
@@ -204,7 +208,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                               ),
                                               Container(
                                                 padding:
-                                                EdgeInsets.only(right: 15),
+                                                    EdgeInsets.only(right: 15),
                                                 child: Text(
                                                   b.rate,
                                                   style: const TextStyle(
@@ -215,33 +219,35 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                               Row(
                                                 children: [
                                                   Container(
-                                                    padding: const EdgeInsets.only(
-                                                        right: 15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 15),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
                                                           Text(
                                                             b.diff,
                                                             style:
-                                                            const TextStyle(
-                                                                color: Colors
-                                                                    .green),
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .green),
                                                           )
                                                         ] else ...[
                                                           Text(
                                                             b.diff,
                                                             style:
-                                                            const TextStyle(
-                                                                color: Colors
-                                                                    .red),
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .red),
                                                           )
                                                         ],
                                                       ],
                                                     ),
                                                   ),
                                                   Container(
-                                                    padding: const EdgeInsets.only(
-                                                        right: 10),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 10),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
@@ -285,18 +291,20 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Conversiya(a.code, a.rate, a.ccy, a.ccyNmUz),
+                                    builder: (context) => Conversiya(
+                                        a.code, a.rate, a.ccy, a.ccyNmUz),
                                   ),
                                 );
                               },
                               child: Container(
-                                padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
+                                padding: const EdgeInsets.only(
+                                    top: 3, bottom: 3, left: 10, right: 10),
                                 color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(bottom: _w/80),
+                                      margin: EdgeInsets.only(bottom: _w / 80),
                                       height: 75,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
@@ -304,7 +312,8 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                             Radius.circular(20)),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.black.withOpacity(0.3),
+                                            color:
+                                                Colors.black.withOpacity(0.3),
                                             blurRadius: 40,
                                             spreadRadius: 10,
                                           ),
@@ -317,15 +326,18 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                           Wrap(
                                             children: [
                                               Container(
-                                                  padding: const EdgeInsets.all(10),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
                                                   child: CircleAvatar(
-                                                    backgroundImage: ExactAssetImage(
-                                                        'assets/png/${flags}.png'),
+                                                    backgroundImage:
+                                                        ExactAssetImage(
+                                                            'assets/png/${flags}.png'),
                                                   )
                                                   // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
                                                   ),
                                               Container(
-                                                padding: const EdgeInsets.only(top: 14),
+                                                padding: const EdgeInsets.only(
+                                                    top: 14),
                                                 child: Text(
                                                   a.ccyNmUz,
                                                   style: const TextStyle(
@@ -342,8 +354,8 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                 CrossAxisAlignment.end,
                                             children: [
                                               Container(
-                                                padding:
-                                                    const EdgeInsets.only(right: 15),
+                                                padding: const EdgeInsets.only(
+                                                    right: 15),
                                                 child: Text(
                                                   a.date,
                                                   style: const TextStyle(
@@ -352,8 +364,8 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                 ),
                                               ),
                                               Container(
-                                                padding:
-                                                    const EdgeInsets.only(right: 15),
+                                                padding: const EdgeInsets.only(
+                                                    right: 15),
                                                 child: Text(
                                                   a.rate,
                                                   style: const TextStyle(
@@ -364,8 +376,9 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                               Row(
                                                 children: [
                                                   Container(
-                                                    padding: const EdgeInsets.only(
-                                                        right: 15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 15),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
@@ -389,8 +402,9 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                     ),
                                                   ),
                                                   Container(
-                                                    padding: const EdgeInsets.only(
-                                                        right: 10),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 10),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
@@ -425,9 +439,28 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
         ]),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        tooltip: 'Increment',
-        child: const Icon(Icons.info),
+        onPressed: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Valyuta kurslari dasturi'),
+            content: const Text("Ushbu dasturdagi kurs ma'lumotlari O'zbekiston Respublikasi markaziy banki tomonidan olinmoqda. \n Pochta: matyaqubovhusnidin@gmail.com"),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        ),
+        tooltip: 'Info',
+        child: const Icon(
+          Icons.info,
+          size: 30,
+        ),
       ),
     );
   }
