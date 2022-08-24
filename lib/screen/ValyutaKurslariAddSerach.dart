@@ -57,7 +57,8 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
       return;
     }
     _list.forEach((f) {
-      if (f.ccy.contains(text) ||
+      if (f.ccy.toUpperCase().contains(text)
+          ||
           f.ccyNmUz.contains(text) ||
           f.ccyNmRu.contains(text) ||
           f.ccyNmUzc.contains(text) ||
@@ -142,7 +143,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                               child: Container(
                                 padding: const EdgeInsets.only(
                                     top: 3, bottom: 3, left: 10, right: 10),
-                                color: Colors.white,
+                                // color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -176,7 +177,6 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                         ExactAssetImage(
                                                             'assets/png/${flags}.png'),
                                                   )
-                                                  // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
                                                   ),
                                               Container(
                                                 padding:
@@ -299,7 +299,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                               child: Container(
                                 padding: const EdgeInsets.only(
                                     top: 3, bottom: 3, left: 10, right: 10),
-                                color: Colors.white,
+                                // color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -443,7 +443,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
           context: context,
           builder: (BuildContext context) => AlertDialog(
             title: const Text('Valyuta kurslari dasturi'),
-            content: const Text("Ushbu dasturdagi kurs ma'lumotlari O'zbekiston Respublikasi markaziy banki tomonidan olinmoqda. \n Pochta: matyaqubovhusnidin@gmail.com"),
+            content: const Text("Ushbu dasturdagi kurs ma'lumotlari O'zbekiston Respublikasi markaziy banki tomonidan olinmoqda. \nPochta: matyaqubovhusnidin@gmail.com"),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
