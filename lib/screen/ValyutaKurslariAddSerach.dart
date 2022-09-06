@@ -1,11 +1,11 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:valyutalar/screen/Conversiya.dart';
 import 'package:valyutalar/screen/Url.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import '../modul/KursJson.dart';
 
 class ValyutaKursAddSerach extends StatefulWidget {
@@ -57,8 +57,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
       return;
     }
     _list.forEach((f) {
-      if (f.ccy.toUpperCase().contains(text)
-          ||
+      if (f.ccy.contains(text) ||
           f.ccyNmUz.contains(text) ||
           f.ccyNmRu.contains(text) ||
           f.ccyNmUzc.contains(text) ||
@@ -94,16 +93,19 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.0),
               ),
-              color: Colors.blue.shade200,
+              color: Colors.green.shade100,
               child: ListTile(
                 leading: const Icon(Icons.search),
                 title: TextField(
                   controller: controller,
-                  onChanged: onSearch,
-                  // decoration: BoxDecoration(
-                  //   color: Colors.white,
-                  //   borderRadius: const BorderRadius.all(
-                  //       Radius.circular(20)),
+                  onChanged:
+                      // (value) {
+                    // controller.value = TextEditingValue(
+                    //   text:  value.toUpperCase(),
+                    //   selection: controller.selection
+                    // );
+                    onSearch,
+                  // },
                   decoration: const InputDecoration(
                       hintText: "Qidiruv", border: InputBorder.none),
                 ),
@@ -442,13 +444,13 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
         onPressed: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title: const Text('Valyuta kurslari dasturi'),
-            content: const Text("Ushbu dasturdagi kurs ma'lumotlari O'zbekiston Respublikasi markaziy banki tomonidan olinmoqda. \nPochta: matyaqubovhusnidin@gmail.com"),
+            title: const Text('Valyuta kurslari', textAlign: TextAlign.center),
+            content: const Text("Kurs ma'lumotlari www.cbu.uz saytidan olinmoqda. \n\n\nmatyaqubovhusnidin@gmail.com"),
             actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
+              // TextButton(
+              //   onPressed: () => Navigator.pop(context, 'Cancel'),
+              //   child: const Text(''),
+              // ),
               TextButton(
                 onPressed: () => Navigator.pop(context, 'OK'),
                 child: const Text('OK'),

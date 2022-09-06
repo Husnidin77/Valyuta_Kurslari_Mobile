@@ -19,7 +19,7 @@ class _DiscannectScreenState extends State<DiscannectScreen> {
       debugShowCheckedModeBanner: false,
       title: 'Valyuta kurslari',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: Scaffold(
         body: Container(
