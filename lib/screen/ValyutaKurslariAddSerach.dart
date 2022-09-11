@@ -57,13 +57,13 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
       return;
     }
     _list.forEach((f) {
-      if (f.ccy.contains(text) ||
-          f.ccyNmUz.contains(text) ||
-          f.ccyNmRu.contains(text) ||
-          f.ccyNmUzc.contains(text) ||
-          f.code.contains(text) ||
-          f.date.contains(text) ||
-          f.date.contains(text)) _serach.add(f);
+      if (f.ccy.toUpperCase().contains(text) ||
+          f.ccyNmUz.toUpperCase().contains(text) ||
+          f.ccyNmRu.toUpperCase().contains(text) ||
+          f.ccyNmUzc.toUpperCase().contains(text) ||
+          f.code.toUpperCase().contains(text) ||
+          f.date.toUpperCase().contains(text) ||
+          f.date.toUpperCase().contains(text)) _serach.add(f);
     });
     setState(() {});
   }
@@ -99,13 +99,13 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                 title: TextField(
                   controller: controller,
                   onChanged:
-                      // (value) {
-                    // controller.value = TextEditingValue(
-                    //   text:  value.toUpperCase(),
-                    //   selection: controller.selection
-                    // );
-                    onSearch,
-                  // },
+                      (value) {
+                    controller.value = TextEditingValue(
+                      text:  value.toUpperCase(),
+                      selection: controller.selection
+                    );
+                    onSearch(value);
+                  },
                   decoration: const InputDecoration(
                       hintText: "Qidiruv", border: InputBorder.none),
                 ),
