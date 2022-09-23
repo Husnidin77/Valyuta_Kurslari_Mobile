@@ -30,12 +30,12 @@ class _DiscannectScreenState extends State<DiscannectScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  'assets/gif/disconnectJson.gif',
+                  'assets/gif/noConnection.gif',
                   width: 250,
                   height: 250,
                 ),
                 const Text(
-                  "Iltimos internet borligiga ishonch hosil qiling",
+                  "Xatolik yuz berdi. Internetga ulanishni tekshiring",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
@@ -55,7 +55,8 @@ class _DiscannectScreenState extends State<DiscannectScreen> {
                         icon: const Icon(Icons.refresh),
                         color: Colors.black,
                         onPressed: () {
-                          main();
+                          print("Ok");
+                         return main();
                         },
                       ),
                     ),
