@@ -175,9 +175,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                   padding:
                                                       const EdgeInsets.all(10),
                                                   child: CircleAvatar(
-                                                    backgroundImage:
-                                                        ExactAssetImage(
-                                                            'assets/png/${flags}.png'),
+                                                    child: Text(b.ccy),
                                                   )
                                                   ),
                                               Container(
@@ -331,9 +329,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                   padding:
                                                       const EdgeInsets.all(10),
                                                   child: CircleAvatar(
-                                                    backgroundImage:
-                                                        ExactAssetImage(
-                                                            'assets/png/${flags}.png'),
+                                                    child: Text(a.ccy),
                                                   )
                                                   // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
                                                   ),

@@ -8,7 +8,6 @@ void main() async{
     switch (status) {
       case InternetConnectionStatus.connected:
         runApp(const MyApp());
-        // runApp(const DiscannectScreen());
         print('Internet connection.');
         break;
       case InternetConnectionStatus.disconnected:
@@ -20,6 +19,7 @@ void main() async{
   await Future.delayed(Duration(seconds: 30));
   await listener.cancel();
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
