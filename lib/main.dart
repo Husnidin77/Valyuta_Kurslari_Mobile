@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:valyutalar/screen/DisconnectScreen.dart';
 import 'package:valyutalar/screen/ValyutaKurslariAddSerach.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:valyutalar/screen/ValyutaKurslariGrid.dart';
 
-void main() async{
-  var listener = InternetConnectionChecker().onStatusChange.listen((status) {
-    switch (status) {
-      case InternetConnectionStatus.connected:
-        runApp(const MyApp());
-        print('Internet connection.');
-        break;
-      case InternetConnectionStatus.disconnected:
-        runApp(const DiscannectScreen());
-        print('Internet disconnected.');
-        break;
-    }
-  });
-  await Future.delayed(Duration(seconds: 30));
-  await listener.cancel();
+// void main() async{
+//   var listener = InternetConnectionChecker().onStatusChange.listen((status) {
+//     switch (status) {
+//       case InternetConnectionStatus.connected:
+//         runApp(const MyApp());
+//         print('Internet connection.');
+//         break;
+//       case InternetConnectionStatus.disconnected:
+//         runApp(const DiscannectScreen());
+//         print('Internet disconnected.');
+//         break;
+//     }
+//   });
+//   await Future.delayed(Duration(seconds: 30));
+//   await listener.cancel();
+// }
+
+void main(){
+  runApp(const MyApp());
 }
 
 
@@ -32,7 +38,29 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const ValyutaKursAddSerach(),
+      home: GridView1(),
     );
   }
+  // Widget build(BuildContext context) {
+  //   return StreamProvider<InternetConnectionStatus>(
+  //     initialData: InternetConnectionStatus.connected,
+  //     create: (_){
+  //       return InternetConnectionChecker().onStatusChange;
+  //     },
+  //     child: MaterialApp(
+  //     debugShowCheckedModeBanner: false,
+  //     title: 'Valyuta kurslari',
+  //     theme: ThemeData(
+  //       primarySwatch: Colors.green,
+  //     ),
+  //     home: Visibility(
+  //       visible: Provider.of<InternetConnectionStatus>(context) == InternetConnectionStatus.disconnected ?
+  //       DiscannectScreen() : ValyutaKursAddSerach(),
+  //       child: null,
+  //     ),
+  //
+  //     )
+  //   );
+  // }
+
 }

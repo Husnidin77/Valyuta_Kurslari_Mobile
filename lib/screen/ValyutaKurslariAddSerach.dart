@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -30,11 +29,9 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
     final url = Uri.parse(urlAll);
     try {
       final response = await http.get(url, headers: {
-        "Accept": "application/json",
         "Access-Control_Allow_Origin": "*",
-        // "Content-Type": "application/json",
-        // "Access-Control-Allow-Methods": "POST, PUT, GET, OPTIONS",
-        // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        "Accept": "application/json",
+        "content-type": "application/json"
       });
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -98,16 +95,11 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                 leading: const Icon(Icons.search),
                 title: TextField(
                   controller: controller,
-                  onChanged:
-                      (value) {
-                    controller.value = TextEditingValue(
-                      text:  value.toUpperCase(),
-                      selection: controller.selection
-                    );
+                  onChanged: (value) {
+                    controller.value = TextEditingValue(text: value.toUpperCase(), selection: controller.selection);
                     onSearch(value);
                   },
-                  decoration: const InputDecoration(
-                      hintText: "Qidiruv", border: InputBorder.none),
+                  decoration: const InputDecoration(hintText: "Qidiruv", border: InputBorder.none),
                 ),
                 trailing: IconButton(
                   onPressed: () {
@@ -137,14 +129,12 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Conversiya(
-                                        b.code, b.rate, b.ccy, b.ccyNmUz),
+                                    builder: (context) => Conversiya(b.code, b.rate, b.ccy, b.ccyNmUz),
                                   ),
                                 );
                               },
                               child: Container(
-                                padding: const EdgeInsets.only(
-                                    top: 3, bottom: 3, left: 10, right: 10),
+                                padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
                                 // color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,100 +144,74 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                       height: 75,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(20)),
+                                        borderRadius: const BorderRadius.all(Radius.circular(20)),
                                         boxShadow: [
                                           BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.3),
+                                            color: Colors.black.withOpacity(0.3),
                                             blurRadius: 40,
                                             spreadRadius: 10,
                                           ),
                                         ],
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Wrap(
                                             children: [
                                               Container(
-                                                  padding:
-                                                      const EdgeInsets.all(10),
+                                                  padding: const EdgeInsets.all(10),
                                                   child: CircleAvatar(
                                                     child: Text(b.ccy),
-                                                  )
-                                                  ),
+                                                  )),
                                               Container(
-                                                padding:
-                                                    EdgeInsets.only(top: 14),
+                                                padding: EdgeInsets.only(top: 14),
                                                 child: Text(
                                                   b.ccyNmUz,
-                                                  style: const TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.blueAccent),
+                                                  style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
                                                 ),
                                               ),
                                             ],
                                           ),
                                           Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.end,
                                             children: [
                                               Container(
-                                                padding:
-                                                    EdgeInsets.only(right: 15),
+                                                padding: EdgeInsets.only(right: 15),
                                                 child: Text(
                                                   b.date,
-                                                  style: const TextStyle(
-                                                      color: Colors.black54,
-                                                      fontSize: 12),
+                                                  style: const TextStyle(color: Colors.black54, fontSize: 12),
                                                 ),
                                               ),
                                               Container(
-                                                padding:
-                                                    EdgeInsets.only(right: 15),
+                                                padding: EdgeInsets.only(right: 15),
                                                 child: Text(
                                                   b.rate,
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 20),
+                                                  style: const TextStyle(color: Colors.black, fontSize: 20),
                                                 ),
                                               ),
                                               Row(
                                                 children: [
                                                   Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 15),
+                                                    padding: const EdgeInsets.only(right: 15),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
                                                           Text(
                                                             b.diff,
-                                                            style:
-                                                                const TextStyle(
-                                                                    color: Colors
-                                                                        .green),
+                                                            style: const TextStyle(color: Colors.green),
                                                           )
                                                         ] else ...[
                                                           Text(
                                                             b.diff,
-                                                            style:
-                                                                const TextStyle(
-                                                                    color: Colors
-                                                                        .red),
+                                                            style: const TextStyle(color: Colors.red),
                                                           )
                                                         ],
                                                       ],
                                                     ),
                                                   ),
                                                   Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 10),
+                                                    padding: const EdgeInsets.only(right: 10),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
@@ -257,10 +221,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                             height: 26,
                                                           )
                                                         ] else ...[
-                                                          Image.asset(
-                                                              'assets/img/qizil.png',
-                                                              width: 26,
-                                                              height: 26),
+                                                          Image.asset('assets/img/qizil.png', width: 26, height: 26),
                                                         ],
                                                       ],
                                                     ),
@@ -291,14 +252,12 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Conversiya(
-                                        a.code, a.rate, a.ccy, a.ccyNmUz),
+                                    builder: (context) => Conversiya(a.code, a.rate, a.ccy, a.ccyNmUz),
                                   ),
                                 );
                               },
                               child: Container(
-                                padding: const EdgeInsets.only(
-                                    top: 3, bottom: 3, left: 10, right: 10),
+                                padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
                                 // color: Colors.white,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -308,101 +267,76 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                       height: 75,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(20)),
+                                        borderRadius: const BorderRadius.all(Radius.circular(20)),
                                         boxShadow: [
                                           BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.3),
+                                            color: Colors.black.withOpacity(0.3),
                                             blurRadius: 40,
                                             spreadRadius: 10,
                                           ),
                                         ],
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Wrap(
                                             children: [
                                               Container(
-                                                  padding:
-                                                      const EdgeInsets.all(10),
+                                                  padding: const EdgeInsets.all(10),
                                                   child: CircleAvatar(
                                                     child: Text(a.ccy),
                                                   )
                                                   // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
                                                   ),
                                               Container(
-                                                padding: const EdgeInsets.only(
-                                                    top: 14),
+                                                padding: const EdgeInsets.only(top: 14),
                                                 child: Text(
                                                   a.ccyNmUz,
-                                                  style: const TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.blueAccent),
+                                                  style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
                                                 ),
                                               ),
                                             ],
                                           ),
                                           Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.end,
                                             children: [
                                               Container(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15),
+                                                padding: const EdgeInsets.only(right: 15),
                                                 child: Text(
                                                   a.date,
-                                                  style: const TextStyle(
-                                                      color: Colors.black54,
-                                                      fontSize: 12),
+                                                  style: const TextStyle(color: Colors.black54, fontSize: 12),
                                                 ),
                                               ),
                                               Container(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15),
+                                                padding: const EdgeInsets.only(right: 15),
                                                 child: Text(
                                                   a.rate,
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 20),
+                                                  style: const TextStyle(color: Colors.black, fontSize: 20),
                                                 ),
                                               ),
                                               Row(
                                                 children: [
                                                   Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 15),
+                                                    padding: const EdgeInsets.only(right: 15),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
                                                           Text(
                                                             a.diff,
-                                                            style:
-                                                                const TextStyle(
-                                                                    color: Colors
-                                                                        .green),
+                                                            style: const TextStyle(color: Colors.green),
                                                           )
                                                         ] else ...[
                                                           Text(
                                                             a.diff,
-                                                            style:
-                                                                const TextStyle(
-                                                                    color: Colors
-                                                                        .red),
+                                                            style: const TextStyle(color: Colors.red),
                                                           )
                                                         ],
                                                       ],
                                                     ),
                                                   ),
                                                   Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 10),
+                                                    padding: const EdgeInsets.only(right: 10),
                                                     child: Column(
                                                       children: [
                                                         if (diff > 0.0) ...[
@@ -412,10 +346,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                                             height: 26,
                                                           )
                                                         ] else ...[
-                                                          Image.asset(
-                                                              'assets/img/qizil.png',
-                                                              width: 26,
-                                                              height: 26),
+                                                          Image.asset('assets/img/qizil.png', width: 26, height: 26),
                                                         ],
                                                       ],
                                                     ),
