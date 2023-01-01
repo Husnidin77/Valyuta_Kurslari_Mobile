@@ -1,7 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:indexed/indexed.dart';
+import 'package:http/http.dart' as http;
+
+import '../modul/KursJson.dart';
+import 'Url.dart';
 
 class MyCustomWidget extends StatefulWidget {
   @override
@@ -9,6 +16,46 @@ class MyCustomWidget extends StatefulWidget {
 }
 
 class _MyCustomWidgetState extends State<MyCustomWidget> {
+  final List<KursJson> _list = [];
+  final List<KursJson> _serach = [];
+
+  var _postJson = [];
+  var loading = false;
+
+  void fetchData() async {
+    setState(() {
+      loading = true;
+    });
+    _list.clear();
+    final url = Uri.parse(urlAll);
+    try {
+      final response = await http.get(url, headers: {
+        "Access-Control_Allow_Origin": "*",
+        "Accept": "application/json",
+        "content-type": "application/json"
+      });
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          for (var i in data) {
+            _list.add(KursJson.formJson(i));
+            loading = false;
+          }
+        });
+      }
+    } catch (err) {}
+  }
+
+
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
   @override
   Widget build(BuildContext c) {
     return Scaffold(
@@ -28,14 +75,20 @@ class _MyCustomWidgetState extends State<MyCustomWidget> {
 }
 
 class GridView1 extends StatelessWidget {
+
+  TextEditingController controller = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
     int columnCount = 2;
 
     return Scaffold(
-      appBar: AppBar(title: Text("GRID"), centerTitle: true, brightness: Brightness.dark),
-      body: AnimationLimiter(
+      backgroundColor: Colors.white60,
+      appBar: AppBar(title: Text("VALYUTALAR KURSLARI"), centerTitle: true, brightness: Brightness.dark),
+      body:
+
+      AnimationLimiter(
         child: GridView.count(
           physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           padding: EdgeInsets.all(5),
@@ -49,80 +102,69 @@ class GridView1 extends StatelessWidget {
                 duration: Duration(milliseconds: 900),
                 curve: Curves.fastLinearToSlowEaseIn,
                 child: FadeInAnimation(
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          Positioned(
-                            top: 20,
-                            child: Container(
-                              width: 250,
-                              height: 250,
-                              color: Colors.deepOrangeAccent,
-                            ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: CircleAvatar(
-                                  backgroundImage: NetworkImage("https://picsum.photos/id/237/200/300"),
-                                  maxRadius: 15,
-                                  minRadius: 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 5, right: 5),
-                        width: 200,
-                        height: 50,
-                        color: Colors.deepOrangeAccent,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Indexer(
+                    children: <Widget>[
+                      Indexed(
+                        index: 1, //more the index, upper the order
+                        child: Positioned(
+                          top: 20, left: 5,
+                          child: Container(
+                            height: 100, width: 150,
+                            color: Colors.white,
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const <Widget>[
-                                Text(
-                                  "AQSH dollori",
-                                  style: TextStyle(color: Colors.white, fontSize: 16,fontWeight: FontWeight.bold),
+                              children: <Widget>[
+                                Column(
+                                  children: [
+                                    Container(
+                                        padding: const EdgeInsets.only(left: 10, top: 35),
+                                        child: Text("Dollor")
+                                    ),
+                                    Container(
+                                        padding: const EdgeInsets.only(left: 10, top: 10),
+                                        child: Text("Sana")
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "Salom",
-                                  style: TextStyle(color: Colors.white),
+                                Column(
+                                  children: [
+                                    Container(
+                                        padding: const EdgeInsets.only(top: 10, right: 10),
+                                        child: Text("img")
+                                    ),
+                                    Container(
+                                        padding: const EdgeInsets.only(top: 10, right: 10),
+                                        child: Text("1111.1"),),
+                                    Container(
+                                        padding: const EdgeInsets.only(top: 10, right: 10),
+                                        child: Text("-15")
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "Salom",
-                                  style: TextStyle(color: Colors.white),
-                                ),
+
                               ],
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const <Widget>[
-                                Text(
-                                  "Salom",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Text(
-                                  "Salom",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ],
+                          ),
                         ),
                       ),
+                      Indexed(
+                        index: 2, //last at widget tree, but middle in order
+                        child: Positioned(
+                          top: 2, left: 5,
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            height: 50, width: 50,
+                            // color: Colors.white,
+                            child: const CircleAvatar(
+                              backgroundImage: NetworkImage("https://picsum.photos/id/237/200/300"),
+                              maxRadius: 15,
+                              minRadius: 15,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
-                  ),
+                  )
                 ),
               ),
             ),
@@ -131,4 +173,5 @@ class GridView1 extends StatelessWidget {
       ),
     );
   }
+
 }

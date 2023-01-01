@@ -4,6 +4,7 @@ import 'package:valyutalar/screen/DisconnectScreen.dart';
 import 'package:valyutalar/screen/ValyutaKurslariAddSerach.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:valyutalar/screen/ValyutaKurslariGrid.dart';
+import 'package:valyutalar/screen/ValyutaKurslariGridFull.dart';
 
 // void main() async{
 //   var listener = InternetConnectionChecker().onStatusChange.listen((status) {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: GridView1(),
+      home: KursValyutaFull(),
     );
   }
   // Widget build(BuildContext context) {
