@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:valyutalar/screen/Conversiya.dart';
 import 'package:valyutalar/screen/Url.dart';
 import 'package:http/http.dart' as http;
+import 'package:valyutalar/screen/ValyutaKurslariGridFull.dart';
 import '../modul/KursJson.dart';
 
 class ValyutaKursAddSerach extends StatefulWidget {
@@ -77,6 +78,18 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const KursValyutaFull(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.grid_view_rounded))
+        ],
         title: const Center(
           child: Text("VALYUTALAR KURSLARI"),
         ),
@@ -160,11 +173,19 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                             children: [
                                               Container(
                                                   padding: const EdgeInsets.all(10),
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.black26,
+                                                  radius: 25.0,
                                                   child: CircleAvatar(
-                                                    child: Text(b.ccy),
-                                                  )),
+                                                    radius: 20.0,
+                                                    backgroundColor: Colors.white24,
+                                                    backgroundImage: AssetImage(
+                                                        'assets/img/flags/$flags.png'), //Text
+                                                  ),
+                                                ),
+                                              ),
                                               Container(
-                                                padding: EdgeInsets.only(top: 14),
+                                                padding: EdgeInsets.only(top: 20),
                                                 child: Text(
                                                   b.ccyNmUz,
                                                   style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
@@ -283,13 +304,20 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                                             children: [
                                               Container(
                                                   padding: const EdgeInsets.all(10),
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.black26,
+                                                  radius: 25.0,
                                                   child: CircleAvatar(
-                                                    child: Text(a.ccy),
-                                                  )
+                                                    radius: 20.0,
+                                                    backgroundColor: Colors.white24,
+                                                    backgroundImage: AssetImage(
+                                                        'assets/img/flags/$flags.png'), //Text
+                                                  ),
+                                                ),
                                                   // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
                                                   ),
                                               Container(
-                                                padding: const EdgeInsets.only(top: 14),
+                                                padding: const EdgeInsets.only(top: 20),
                                                 child: Text(
                                                   a.ccyNmUz,
                                                   style: const TextStyle(fontSize: 20, color: Colors.blueAccent),

@@ -1,12 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uz.mxz.valyuta.valyutalar">
+    package="uz.mxz.valyuta"
+    android:versionCode="2"
+    android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:label="valyutalar"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2837683596775112~7499325888" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
