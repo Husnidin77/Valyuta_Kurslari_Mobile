@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:valyutalar/screen/Conversiya.dart';
 import 'package:valyutalar/screen/Url.dart';
 import 'package:http/http.dart' as http;
 import 'package:valyutalar/screen/ValyutaKurslariGridFull.dart';
 import '../modul/KursJson.dart';
+import '../routes/feature_store_secrets.dart';
 
 class ValyutaKursAddSerach extends StatefulWidget {
   const ValyutaKursAddSerach({Key? key}) : super(key: key);
@@ -18,9 +20,33 @@ class ValyutaKursAddSerach extends StatefulWidget {
 class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
   final List<KursJson> _list = [];
   final List<KursJson> _serach = [];
-
+  bool _adLoaded = false;
+  late BannerAd _bannerAd;
   var _postJson = [];
   var loading = false;
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    _loadAd();
+  }
+
+
+  Future<void> _loadAd() async {
+    _bannerAd = BannerAd(
+      size: AdSize.banner,
+      adUnitId: MySecretsHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (Ad ad) => setState(() {
+          _bannerAd =ad as BannerAd;
+          _adLoaded = true;
+        }),
+        onAdFailedToLoad: (ad, error) => ad.dispose(),
+      ),
+    );
+    return _bannerAd.load();
+  }
 
   void fetchData() async {
     setState(() {
@@ -73,6 +99,12 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _bannerAd.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
 
@@ -93,6 +125,12 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
         title: const Center(
           child: Text("VALYUTALAR KURSLARI"),
         ),
+      ),
+      bottomNavigationBar: Container(
+        alignment: Alignment.center,
+        width: _bannerAd.size.width.toDouble(),
+        height: _bannerAd.size.height.toDouble(),
+        child: _adLoaded ? AdWidget(ad: _bannerAd) : const LinearProgressIndicator(),
       ),
       body: Container(
         child: Column(children: [

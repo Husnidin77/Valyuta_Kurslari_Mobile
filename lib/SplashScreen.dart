@@ -19,13 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    //Load AppOpen Ad
     appOpenAdManager.loadAd();
 
-    //Show AppOpen Ad After 8 Seconds
     Future.delayed(const Duration(milliseconds: 800)).then((value) {
-      //Here we will wait for 8 seconds to load our ad
-      //After 8 second it will go to HomePage
       appOpenAdManager.showAdIfAvailable();
       Navigator.push(
         context,
@@ -41,6 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
+        // child: SplashScreen(),
       ),
     );
   }

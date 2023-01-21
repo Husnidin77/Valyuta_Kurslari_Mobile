@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:indexed/indexed.dart';
 import 'package:valyutalar/screen/ValyutaKurslariAddSerach.dart';
 import '../AppOpenAdManager.dart';
 import '../modul/KursJson.dart';
+import '../routes/feature_store_secrets.dart';
 import 'Conversiya.dart';
 import 'Url.dart';
 
@@ -20,10 +21,11 @@ class KursValyutaFull extends StatefulWidget {
 class _KursValyutaFullState extends State<KursValyutaFull> with WidgetsBindingObserver {
   AppOpenAdManager appOpenAdManager = AppOpenAdManager();
   bool isPaused = false;
+  bool _adLoaded = false;
+  late BannerAd _bannerAd;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     appOpenAdManager.loadAd();
     WidgetsBinding.instance.addObserver(this);
@@ -33,14 +35,13 @@ class _KursValyutaFullState extends State<KursValyutaFull> with WidgetsBindingOb
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     WidgetsBinding.instance.removeObserver(this);
+    _bannerAd.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    // TODO: implement didChangeAppLifecycleState
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.paused) {
       isPaused = true;
@@ -51,6 +52,30 @@ class _KursValyutaFullState extends State<KursValyutaFull> with WidgetsBindingOb
       isPaused = false;
     }
   }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    _loadAd();
+  }
+
+  Future<void> _loadAd() async {
+    _bannerAd = BannerAd(
+        size: AdSize.banner,
+        adUnitId: MySecretsHelper.bannerAdUnitId,
+        request: const AdRequest(),
+        listener: BannerAdListener(
+          onAdLoaded: (Ad ad) => setState(() {
+            _bannerAd =ad as BannerAd;
+            _adLoaded = true;
+          }),
+          onAdFailedToLoad: (ad, error) => ad.dispose(),
+        ),
+    );
+    return _bannerAd.load();
+  }
+
+
 
   final List<KursJson> _list = [];
   final List<KursJson> _serach = [];
@@ -129,6 +154,12 @@ class _KursValyutaFullState extends State<KursValyutaFull> with WidgetsBindingOb
         title: const Center(
           child: Text("VALYUTALAR KURSLARI"),
         ),
+      ),
+      bottomNavigationBar: Container(
+        alignment: Alignment.center,
+        width: _bannerAd.size.width.toDouble(),
+        height: _bannerAd.size.height.toDouble(),
+        child: _adLoaded ? AdWidget(ad: _bannerAd) : const LinearProgressIndicator(),
       ),
       body: Container(
         color: Colors.white24,
