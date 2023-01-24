@@ -1,14 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uz.mxz.valyuta"
-    android:versionCode="2"
-    android:versionName="1.0">
+    package="uz.mxz.currency"
+    android:versionCode="3"
+    android:versionName="3.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="valyutalar"
+        android:label="Valyutalar"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config">
 

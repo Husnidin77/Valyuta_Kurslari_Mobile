@@ -63,8 +63,6 @@ class MarkdownExample extends StatelessWidget {
         data: _markdownSrc,
         onTapLink: (text, href, title) => onTapLink(text, href, title, context),
         selectable: true,
-        // syntaxHighlighter: _MyDartSyntaxHighligher(),
-        //// We use [GitHub flavored Markdown]: https://github.github.com/gfm/.
         extensionSet: md.ExtensionSet(
           /*blockSyntaxes=*/ md.ExtensionSet.gitHubFlavored.blockSyntaxes,
           /*inlineSyntaxes=*/ md.ExtensionSet.gitHubFlavored.inlineSyntaxes,
