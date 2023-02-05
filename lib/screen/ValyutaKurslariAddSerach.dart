@@ -136,7 +136,7 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
         child: Column(children: [
           Container(
             padding: const EdgeInsets.all(5.0),
-            color: Colors.white,
+            color: Colors.white24,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.0),

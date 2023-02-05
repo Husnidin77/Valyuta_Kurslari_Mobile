@@ -36,7 +36,7 @@ dependencies:
   google_mobile_ads: ^2.3.0
   flutter_markdown: ^0.6.13
   markdown: ^6.0.1
-  url_launcher: ^6.1.7
+  url_launcher: ^6.1.8
   flutter:
     sdk: flutter
 

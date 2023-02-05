@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../modul/KursJson.dart';
+import '../routes/CustomBannerAd.dart';
 
 class Conversiya extends StatelessWidget {
   final String code;
@@ -23,6 +24,8 @@ class Conversiya extends StatelessWidget {
     String flag = ccy;
     String flags = flag.substring(0, 2).toLowerCase();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      bottomNavigationBar: const CustomBannerAd(),
       appBar: AppBar(
         title: const Text("Valyuta hisoblash"),
       ),
@@ -61,7 +64,7 @@ class Conversiya extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: CircleAvatar(
                         backgroundImage:
-                            ExactAssetImage('assets/png/${flags}.png'),
+                            ExactAssetImage('assets/img/flags/${flags}.png'),
                       )),
                 ],
               ),
@@ -93,7 +96,7 @@ class Conversiya extends StatelessWidget {
                   Container(
                       padding: const EdgeInsets.all(10),
                       child: const CircleAvatar(
-                        backgroundImage: ExactAssetImage('assets/png/uz.png'),
+                        backgroundImage: ExactAssetImage('assets/img/flags/uz.png'),
                       )),
                 ],
               ),
@@ -124,6 +127,38 @@ class Conversiya extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 50),
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const <Widget>[
+                    CustomBannerAd(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomBannerAd(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomBannerAd(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomBannerAd(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomBannerAd(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomBannerAd(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
               ),
             ],
           )),
