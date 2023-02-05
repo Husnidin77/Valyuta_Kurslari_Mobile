@@ -8,7 +8,7 @@
 PRODUCT_NAME = valyutalar
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = uz.mxz.valyuta
+PRODUCT_BUNDLE_IDENTIFIER = uz.mxz.currency
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 uz.mxz.valyuta. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 uz.mxz.currency. All rights reserved.

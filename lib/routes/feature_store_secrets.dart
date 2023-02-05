@@ -30,7 +30,6 @@ flutter build apk \
 ```
 The keys can be referenced in dart code by:
 ```dart
-# ! NOTE: must add "const" to it, see https://github.com/flutter/flutter/issues/55870
 String myKey = const String.fromEnvironment(
     'MY_FIRST_KEY',
     defaultValue: '',
@@ -64,11 +63,8 @@ to store and obfuscate secrets. For more details see [Andrea's tutorial](https:/
 // ignore: avoid_classes_with_only_static_members
 class MySecretsHelper {
   static String get bannerAdUnitId {
-    // https://developers.google.com/admob/android/test-ads#sample_ad_units
     const kAndroidDebugAdId = 'ca-app-pub-2837683596775112/8338444429';
-    // https://developers.google.com/admob/ios/test-ads#demo_ad_units
     const kIosDebugAdId = 'ca-app-pub-3940256099942544/2934735716';
-    // ! Return test ad unit if we are in debug mode -- otherwise account might be banned!
     if (Platform.isAndroid) {
       return kDebugMode
           ? kAndroidDebugAdId
@@ -84,9 +80,7 @@ class MySecretsHelper {
   }
 
   static String get interstitialAdUnitId {
-    // https://developers.google.com/admob/android/test-ads#sample_ad_units
     const kAndroidDebugAdId = 'ca-app-pub-3940256099942544/1033173712';
-    // https://developers.google.com/admob/ios/test-ads#demo_ad_units
     const kIosDebugAdId = 'ca-app-pub-3940256099942544/4411468910';
     if (Platform.isAndroid) {
       return kDebugMode
@@ -103,9 +97,7 @@ class MySecretsHelper {
   }
 
   static String get rewardedAdUnitId {
-    // https://developers.google.com/admob/android/test-ads#sample_ad_units
     const kAndroidDebugAdId = 'ca-app-pub-3940256099942544/5224354917';
-    // https://developers.google.com/admob/ios/test-ads#demo_ad_units
     const kIosDebugAdId = 'ca-app-pub-3940256099942544/1712485313';
     if (Platform.isAndroid) {
       return kDebugMode

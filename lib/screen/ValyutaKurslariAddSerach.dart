@@ -168,268 +168,272 @@ class _ValyutaKursAddSerachState extends State<ValyutaKursAddSerach> {
                 )
               : Expanded(
                   child: _serach.length != 0 || controller.text.isNotEmpty
-                      ? ListView.builder(
-                          itemCount: _serach.length,
-                          itemBuilder: (context, i) {
-                            final b = _serach[i];
-                            double diff = double.parse(b.diff);
-                            String flagb = b.ccy;
-                            String flags = flagb.substring(0, 2).toLowerCase();
-                            return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Conversiya(b.code, b.rate, b.ccy, b.ccyNmUz),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
-                                // color: Colors.white,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(bottom: _w / 60),
-                                      height: 75,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black.withOpacity(0.3),
-                                            blurRadius: 40,
-                                            spreadRadius: 10,
-                                          ),
-                                        ],
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Wrap(
-                                            children: [
-                                              Container(
-                                                  padding: const EdgeInsets.all(10),
-                                                child: CircleAvatar(
-                                                  backgroundColor: Colors.black26,
-                                                  radius: 25.0,
-                                                  child: CircleAvatar(
-                                                    radius: 20.0,
-                                                    backgroundColor: Colors.white24,
-                                                    backgroundImage: AssetImage(
-                                                        'assets/img/flags/$flags.png'), //Text
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.only(top: 20),
-                                                child: Text(
-                                                  b.ccyNmUz,
-                                                  style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              Container(
-                                                padding: EdgeInsets.only(right: 15),
-                                                child: Text(
-                                                  b.date,
-                                                  style: const TextStyle(color: Colors.black54, fontSize: 12),
-                                                ),
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.only(right: 15),
-                                                child: Text(
-                                                  b.rate,
-                                                  style: const TextStyle(color: Colors.black, fontSize: 20),
-                                                ),
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    padding: const EdgeInsets.only(right: 15),
-                                                    child: Column(
-                                                      children: [
-                                                        if (diff > 0.0) ...[
-                                                          Text(
-                                                            b.diff,
-                                                            style: const TextStyle(color: Colors.green),
-                                                          )
-                                                        ] else ...[
-                                                          Text(
-                                                            b.diff,
-                                                            style: const TextStyle(color: Colors.red),
-                                                          )
-                                                        ],
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding: const EdgeInsets.only(right: 10),
-                                                    child: Column(
-                                                      children: [
-                                                        if (diff > 0.0) ...[
-                                                          Image.asset(
-                                                            'assets/img/yashil.png',
-                                                            width: 26,
-                                                            height: 26,
-                                                          )
-                                                        ] else ...[
-                                                          Image.asset('assets/img/qizil.png', width: 26, height: 26),
-                                                        ],
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                      ? Container(
+                      color: Colors.white24,
+                        child: ListView.builder(
+                            itemCount: _serach.length,
+                            itemBuilder: (context, i) {
+                              final b = _serach[i];
+                              double diff = double.parse(b.diff);
+                              String flagb = b.ccy;
+                              String flags = flagb.substring(0, 2).toLowerCase();
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Conversiya(b.code, b.rate, b.ccy, b.ccyNmUz),
                                     ),
-                                    // Text(a.ccy),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        )
-                      : ListView.builder(
-                          itemCount: _list.length,
-                          itemBuilder: (context, i) {
-                            final a = _list[i];
-                            double diff = double.parse(a.diff);
-                            String flag = a.ccy;
-                            String flags = flag.substring(0, 2).toLowerCase();
-                            return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Conversiya(a.code, a.rate, a.ccy, a.ccyNmUz),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
-                                // color: Colors.white,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(bottom: _w / 80),
-                                      height: 75,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black.withOpacity(0.3),
-                                            blurRadius: 40,
-                                            spreadRadius: 10,
-                                          ),
-                                        ],
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Wrap(
-                                            children: [
-                                              Container(
-                                                  padding: const EdgeInsets.all(10),
-                                                child: CircleAvatar(
-                                                  backgroundColor: Colors.black26,
-                                                  radius: 25.0,
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: _w / 60),
+                                        height: 75,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white24,
+                                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(0.3),
+                                              blurRadius: 40,
+                                              spreadRadius: 10,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Wrap(
+                                              children: [
+                                                Container(
+                                                    padding: const EdgeInsets.all(10),
                                                   child: CircleAvatar(
-                                                    radius: 20.0,
-                                                    backgroundColor: Colors.white24,
-                                                    backgroundImage: AssetImage(
-                                                        'assets/img/flags/$flags.png'), //Text
-                                                  ),
-                                                ),
-                                                  // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
-                                                  ),
-                                              Container(
-                                                padding: const EdgeInsets.only(top: 20),
-                                                child: Text(
-                                                  a.ccyNmUz,
-                                                  style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              Container(
-                                                padding: const EdgeInsets.only(right: 15),
-                                                child: Text(
-                                                  a.date,
-                                                  style: const TextStyle(color: Colors.black54, fontSize: 12),
-                                                ),
-                                              ),
-                                              Container(
-                                                padding: const EdgeInsets.only(right: 15),
-                                                child: Text(
-                                                  a.rate,
-                                                  style: const TextStyle(color: Colors.black, fontSize: 20),
-                                                ),
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    padding: const EdgeInsets.only(right: 15),
-                                                    child: Column(
-                                                      children: [
-                                                        if (diff > 0.0) ...[
-                                                          Text(
-                                                            a.diff,
-                                                            style: const TextStyle(color: Colors.green),
-                                                          )
-                                                        ] else ...[
-                                                          Text(
-                                                            a.diff,
-                                                            style: const TextStyle(color: Colors.red),
-                                                          )
-                                                        ],
-                                                      ],
+                                                    backgroundColor: Colors.black26,
+                                                    radius: 25.0,
+                                                    child: CircleAvatar(
+                                                      radius: 20.0,
+                                                      backgroundColor: Colors.white24,
+                                                      backgroundImage: AssetImage(
+                                                          'assets/img/flags/$flags.png'), //Text
                                                     ),
                                                   ),
-                                                  Container(
-                                                    padding: const EdgeInsets.only(right: 10),
-                                                    child: Column(
-                                                      children: [
-                                                        if (diff > 0.0) ...[
-                                                          Image.asset(
-                                                            'assets/img/yashil.png',
-                                                            width: 26,
-                                                            height: 26,
-                                                          )
-                                                        ] else ...[
-                                                          Image.asset('assets/img/qizil.png', width: 26, height: 26),
-                                                        ],
-                                                      ],
-                                                    ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.only(top: 20),
+                                                  child: Text(
+                                                    b.ccyNmUz,
+                                                    style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
                                                   ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.only(right: 15),
+                                                  child: Text(
+                                                    b.date,
+                                                    style: const TextStyle(color: Colors.black54, fontSize: 12),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.only(right: 15),
+                                                  child: Text(
+                                                    b.rate,
+                                                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      padding: const EdgeInsets.only(right: 15),
+                                                      child: Column(
+                                                        children: [
+                                                          if (diff > 0.0) ...[
+                                                            Text(
+                                                              b.diff,
+                                                              style: const TextStyle(color: Colors.green),
+                                                            )
+                                                          ] else ...[
+                                                            Text(
+                                                              b.diff,
+                                                              style: const TextStyle(color: Colors.red),
+                                                            )
+                                                          ],
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: Column(
+                                                        children: [
+                                                          if (diff > 0.0) ...[
+                                                            Image.asset(
+                                                              'assets/img/yashil.png',
+                                                              width: 26,
+                                                              height: 26,
+                                                            )
+                                                          ] else ...[
+                                                            Image.asset('assets/img/qizil.png', width: 26, height: 26),
+                                                          ],
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    // Text(a.ccy),
-                                  ],
+                                      // Text(a.ccy),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }),
+                              );
+                            },
+                          ),
+                      )
+                      : Container(
+                    color: Colors.white24,
+                        child: ListView.builder(
+                            itemCount: _list.length,
+                            itemBuilder: (context, i) {
+                              final a = _list[i];
+                              double diff = double.parse(a.diff);
+                              String flag = a.ccy;
+                              String flags = flag.substring(0, 2).toLowerCase();
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Conversiya(a.code, a.rate, a.ccy, a.ccyNmUz),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: _w / 80),
+                                        height: 75,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(0.3),
+                                              blurRadius: 40,
+                                              spreadRadius: 10,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Wrap(
+                                              children: [
+                                                Container(
+                                                    padding: const EdgeInsets.all(10),
+                                                  child: CircleAvatar(
+                                                    backgroundColor: Colors.black26,
+                                                    radius: 25.0,
+                                                    child: CircleAvatar(
+                                                      radius: 20.0,
+                                                      backgroundColor: Colors.white24,
+                                                      backgroundImage: AssetImage(
+                                                          'assets/img/flags/$flags.png'), //Text
+                                                    ),
+                                                  ),
+                                                    // child: new SvgPicture.asset('assets/flags/${flags}.svg', width: 26, height: 26),
+                                                    ),
+                                                Container(
+                                                  padding: const EdgeInsets.only(top: 20),
+                                                  child: Text(
+                                                    a.ccyNmUz,
+                                                    style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  padding: const EdgeInsets.only(right: 15),
+                                                  child: Text(
+                                                    a.date,
+                                                    style: const TextStyle(color: Colors.black54, fontSize: 12),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: const EdgeInsets.only(right: 15),
+                                                  child: Text(
+                                                    a.rate,
+                                                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      padding: const EdgeInsets.only(right: 15),
+                                                      child: Column(
+                                                        children: [
+                                                          if (diff > 0.0) ...[
+                                                            Text(
+                                                              a.diff,
+                                                              style: const TextStyle(color: Colors.green),
+                                                            )
+                                                          ] else ...[
+                                                            Text(
+                                                              a.diff,
+                                                              style: const TextStyle(color: Colors.red),
+                                                            )
+                                                          ],
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      padding: const EdgeInsets.only(right: 10),
+                                                      child: Column(
+                                                        children: [
+                                                          if (diff > 0.0) ...[
+                                                            Image.asset(
+                                                              'assets/img/yashil.png',
+                                                              width: 26,
+                                                              height: 26,
+                                                            )
+                                                          ] else ...[
+                                                            Image.asset('assets/img/qizil.png', width: 26, height: 26),
+                                                          ],
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      // Text(a.ccy),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                      ),
                 ),
         ]),
       ),

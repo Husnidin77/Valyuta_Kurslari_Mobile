@@ -1,4 +1,4 @@
-package uz.mxz.valyuta;
+package uz.mxz.currency;
 
 import io.flutter.embedding.android.FlutterActivity;
 
